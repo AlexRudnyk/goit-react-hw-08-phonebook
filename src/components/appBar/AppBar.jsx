@@ -6,8 +6,8 @@ export const AppBar = () => {
       <AppWrapper>
         <AppTitle>Phonebook</AppTitle>
         <Navigation>
-          <AppBarLink>Registration</AppBarLink>
-          <AppBarLink>Login</AppBarLink>
+          <AppBarLink to="registration">Registration</AppBarLink>
+          <AppBarLink to="login">Login</AppBarLink>
         </Navigation>
       </AppWrapper>
     </>

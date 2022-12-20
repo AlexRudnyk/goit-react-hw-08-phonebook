@@ -1,18 +1,27 @@
-import { AddContact } from './addContact/AddContact';
-import ContactList from './contactList';
-import Filter from './filter';
-import { ListTitle, Container } from './App.styled';
 import { Layout } from './layout/Layout';
+import { Routes, Route } from 'react-router-dom';
+import { ContactsView } from '../views/contactsView/ContactsView';
+import RegistrationView from 'views/RegistrationView';
+import LoginView from 'views/LoginView';
 
 export default function App() {
   return (
-    <Container>
-      <Layout />
-      {/* <AppTitle>Phonebook</AppTitle> */}
-      <AddContact />
-      <ListTitle>Contacts</ListTitle>
-      <Filter />
-      <ContactList />
-    </Container>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<ContactsView />} />
+          <Route path="registration" element={<RegistrationView />} />
+          <Route path="login" element={<LoginView />} />
+        </Route>
+      </Routes>
+      {/* <Container>
+        <Layout />
+        <AppTitle>Phonebook</AppTitle>
+        <AddContact />
+        <ListTitle>Contacts</ListTitle>
+        <Filter />
+        <ContactList />
+      </Container> */}
+    </>
   );
 }

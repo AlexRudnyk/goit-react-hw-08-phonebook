@@ -5,7 +5,7 @@ export const Navigation = styled.nav`
   display: flex;
 `;
 
-export const AppWrapper = styled.div`
+export const AppWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
