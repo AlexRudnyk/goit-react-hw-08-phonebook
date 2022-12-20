@@ -1,14 +1,14 @@
-import { Navigation, AppWrapper, AppBarLink, AppTitle } from './AppBar.styled';
+import { AppWrapper, AppTitle } from './AppBar.styled';
+import { AuthNav } from 'components/authNav/AuthNav';
+import { UserMenu } from 'components/userMenu/UserMenu';
 
 export const AppBar = () => {
   return (
     <>
       <AppWrapper>
         <AppTitle>Phonebook</AppTitle>
-        <Navigation>
-          <AppBarLink to="registration">Registration</AppBarLink>
-          <AppBarLink to="login">Login</AppBarLink>
-        </Navigation>
+        <AuthNav />
+        <UserMenu />
       </AppWrapper>
     </>
   );

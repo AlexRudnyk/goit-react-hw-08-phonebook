@@ -1,5 +1,5 @@
 import { Layout } from './layout/Layout';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ContactsView } from '../views/contactsView/ContactsView';
 import RegistrationView from 'views/RegistrationView';
 import LoginView from 'views/LoginView';
@@ -12,6 +12,7 @@ export default function App() {
           <Route index element={<ContactsView />} />
           <Route path="registration" element={<RegistrationView />} />
           <Route path="login" element={<LoginView />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
       {/* <Container>
