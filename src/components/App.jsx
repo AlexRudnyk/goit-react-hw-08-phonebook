@@ -18,29 +18,29 @@ export default function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    'Fetching user data...'
-  ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route
-          index
-          element={
-            <PrivateRoute component={ContactsView} redirectTo="/login" />
-          }
-        />
-        <Route
-          path="registration"
-          element={
-            <RestrictedRoute component={RegistrationView} redirectTo="/" />
-          }
-        />
-        <Route
-          path="login"
-          element={<RestrictedRoute component={LoginView} redirectTo="/" />}
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+  return (
+    !isRefreshing && (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <PrivateRoute component={ContactsView} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="registration"
+            element={
+              <RestrictedRoute component={RegistrationView} redirectTo="/" />
+            }
+          />
+          <Route
+            path="login"
+            element={<RestrictedRoute component={LoginView} redirectTo="/" />}
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+      </Routes>
+    )
   );
 }

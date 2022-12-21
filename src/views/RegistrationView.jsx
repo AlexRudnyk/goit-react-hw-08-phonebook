@@ -107,7 +107,6 @@ export default function RegistrationView() {
                   label="Name"
                   autoFocus
                   error={userNameError}
-                  autocomplete="off"
                 />
               </Grid>
               <Grid item xs={12}>
