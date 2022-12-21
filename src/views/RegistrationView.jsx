@@ -36,10 +36,30 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function RegistrationView() {
+  const [userName, setUserName] = React.useState('');
+  const [userMail, setUserMail] = React.useState('');
+  const [userPassword, setUserPassword] = React.useState('');
+  const [userNameError, setUserNameError] = React.useState(false);
+  const [userMailError, setUserMailError] = React.useState(false);
+  const [userPasswordError, setUserPasswordError] = React.useState(false);
+
   const dispatch = useDispatch();
   const handleSubmit = event => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
+    setUserNameError(false);
+    setUserMailError(false);
+    setUserPasswordError(false);
+
+    if (userName === '') {
+      setUserNameError(true);
+    }
+    if (userMail === '') {
+      setUserMailError(true);
+    }
+    if (userPassword === '') {
+      setUserPasswordError(true);
+    }
+
     const form = event.currentTarget;
     dispatch(
       register({
@@ -48,11 +68,7 @@ export default function RegistrationView() {
         password: form.elements.password.value,
       })
     );
-    console.log({
-      name: form.elements.name.value,
-      email: form.elements.email.value,
-      password: form.elements.password.value,
-    });
+    form.reset();
   };
 
   return (
@@ -82,6 +98,7 @@ export default function RegistrationView() {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  onChange={e => setUserName(e.currentTarget.value)}
                   autoComplete="given-name"
                   name="name"
                   required
@@ -89,30 +106,24 @@ export default function RegistrationView() {
                   id="name"
                   label="Name"
                   autoFocus
+                  error={userNameError}
                 />
               </Grid>
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
               <Grid item xs={12}>
                 <TextField
+                  onChange={e => setUserMail(e.currentTarget.value)}
                   required
                   fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  error={userMailError}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  onChange={e => setUserPassword(e.currentTarget.value)}
                   required
                   fullWidth
                   name="password"
@@ -120,6 +131,8 @@ export default function RegistrationView() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  error={userPasswordError}
+                  helperText="Password min 7 symbols is required"
                 />
               </Grid>
               <Grid item xs={12}>
