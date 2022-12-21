@@ -3,26 +3,44 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { ContactsView } from '../views/contactsView/ContactsView';
 import RegistrationView from 'views/RegistrationView';
 import LoginView from 'views/LoginView';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { refreshUser } from 'redux/auth/operations';
+import { useAuth } from 'hooks/useAuth';
+import { RestrictedRoute } from './restricredRoute/RestrictedRoute';
+import { PrivateRoute } from './privateRoute/PrivateRoute';
 
 export default function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<ContactsView />} />
-          <Route path="registration" element={<RegistrationView />} />
-          <Route path="login" element={<LoginView />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Route>
-      </Routes>
-      {/* <Container>
-        <Layout />
-        <AppTitle>Phonebook</AppTitle>
-        <AddContact />
-        <ListTitle>Contacts</ListTitle>
-        <Filter />
-        <ContactList />
-      </Container> */}
-    </>
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    'Fetching user data...'
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <PrivateRoute component={ContactsView} redirectTo="/login" />
+          }
+        />
+        <Route
+          path="registration"
+          element={
+            <RestrictedRoute component={RegistrationView} redirectTo="/" />
+          }
+        />
+        <Route
+          path="login"
+          element={<RestrictedRoute component={LoginView} redirectTo="/" />}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 }
