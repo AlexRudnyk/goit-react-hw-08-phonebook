@@ -46,10 +46,6 @@ export default function LoginView() {
         password: form.elements.password.value,
       })
     );
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
     form.reset();
   };
 

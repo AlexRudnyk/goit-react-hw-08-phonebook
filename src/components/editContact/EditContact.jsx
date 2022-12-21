@@ -1,18 +1,20 @@
 import {
-  useFetchContactByIdQuery,
+  useFetchContactsQuery,
   useEditContactMutation,
 } from 'redux/contactsSlice';
 import { Modal, Overlay, TitleWrapper } from './EditContact.styled';
 import { ContactForm } from 'components/contactForm/ContactForm';
 
 export const EditContact = ({ closeModal, id }) => {
-  const { data: contact } = useFetchContactByIdQuery(id);
+  const { data: contacts } = useFetchContactsQuery();
   const [editContact] = useEditContactMutation();
   const handleCloseModal = () => closeModal(false);
 
+  const findContactById = contacts.filter(contact => contact.id === id);
+
   const handleEditContact = async fields => {
     try {
-      await editContact({ id: id, ...fields });
+      await editContact({ id, ...fields });
       handleCloseModal();
     } catch (error) {
       console.log(error.message);
@@ -28,11 +30,14 @@ export const EditContact = ({ closeModal, id }) => {
             Close
           </button>
         </TitleWrapper>
-        {contact && (
+        {contacts && (
           <ContactForm
             onSubmit={handleEditContact}
             btnText={'Update'}
-            initialValues={{ name: contact.name, number: contact.number }}
+            initialValues={{
+              name: findContactById[0].name,
+              number: findContactById[0].number,
+            }}
           />
         )}
       </Modal>
