@@ -2,7 +2,7 @@ import { useAuth } from 'hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { Container, UserMenuText } from './UserMenu.styled';
-import { Button } from '@mui/material';
+import { Button } from './UserMenu.styled';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -15,13 +15,7 @@ export const UserMenu = () => {
       <UserMenuText>
         Welcome, <strong>{user.name}</strong>
       </UserMenuText>
-      <Button
-        type="button"
-        onClick={handleLogOut}
-        fullWidth
-        variant="contained"
-        // sx={{ mt: 3, mb: 2 }}
-      >
+      <Button type="button" onClick={handleLogOut}>
         Logout
       </Button>
     </Container>

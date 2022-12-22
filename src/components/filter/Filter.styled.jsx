@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const FilterInput = styled.input`
   width: 200px;
   margin-bottom: 20px;
-  padding: 5px;
+  padding: 10px;
 `;
 
 export const FilterTitle = styled.h3`

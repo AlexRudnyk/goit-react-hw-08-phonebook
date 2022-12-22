@@ -4,6 +4,7 @@ import {
 } from 'redux/contactsSlice';
 import { Modal, Overlay, TitleWrapper } from './EditContact.styled';
 import { ContactForm } from 'components/contactForm/ContactForm';
+import { Button } from './EditContact.styled';
 
 export const EditContact = ({ closeModal, id }) => {
   const { data: contacts } = useFetchContactsQuery();
@@ -26,9 +27,9 @@ export const EditContact = ({ closeModal, id }) => {
       <Modal>
         <TitleWrapper>
           <p>Update contact</p>
-          <button type="button" onClick={handleCloseModal}>
+          <Button type="button" onClick={handleCloseModal}>
             Close
-          </button>
+          </Button>
         </TitleWrapper>
         {contacts && (
           <ContactForm
