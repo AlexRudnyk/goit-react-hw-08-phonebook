@@ -83,7 +83,7 @@ export default function LoginView() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              autoFocus
+              // autoFocus
             />
             <TextField
               margin="normal"

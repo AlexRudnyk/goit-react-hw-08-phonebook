@@ -106,7 +106,7 @@ export default function RegistrationView() {
                   fullWidth
                   id="name"
                   label="Name"
-                  autoFocus
+                  // autoFocus
                   error={userNameError}
                 />
               </Grid>
