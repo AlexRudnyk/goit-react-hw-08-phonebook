@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/operations';
+import { LinkRouter } from './LoginView.styled';
 
 function Copyright(props) {
   return (
@@ -112,9 +113,9 @@ export default function LoginView() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <LinkRouter to="/registration">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </LinkRouter>
               </Grid>
             </Grid>
           </Box>
