@@ -4,6 +4,7 @@ export const ListItem = styled.li`
   display: flex;
   width: 400px;
   justify-content: space-between;
+  align-items: center;
   font-size: 20px;
   list-style: disc;
   &:not(:last-child) {
