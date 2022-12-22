@@ -38,6 +38,7 @@ const theme = createTheme();
 
 export default function LoginView() {
   const dispatch = useDispatch();
+
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.currentTarget;

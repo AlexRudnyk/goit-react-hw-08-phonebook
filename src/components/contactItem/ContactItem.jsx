@@ -3,10 +3,16 @@ import { useDeleteContactMutation } from 'redux/contactsSlice';
 import { useState } from 'react';
 import { EditContact } from 'components/editContact/EditContact';
 import { ImPencil, ImBin2 } from 'react-icons/im';
+import { toast } from 'react-toastify';
 
 export const ContactItem = ({ contact }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteContact, { isLoading }] = useDeleteContactMutation();
+
+  const handleDelete = () => {
+    deleteContact(contact.id);
+    toast.success('Contact deleted');
+  };
 
   return (
     <>
@@ -16,11 +22,7 @@ export const ContactItem = ({ contact }) => {
           <EditBtn type="button" onClick={() => setIsModalOpen(true)}>
             <ImPencil />
           </EditBtn>
-          <DeleteBtn
-            type="button"
-            onClick={() => deleteContact(contact.id)}
-            disabled={isLoading}
-          >
+          <DeleteBtn type="button" onClick={handleDelete} disabled={isLoading}>
             <ImBin2 />
           </DeleteBtn>
         </div>

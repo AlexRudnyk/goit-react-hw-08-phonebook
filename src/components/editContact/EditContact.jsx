@@ -5,6 +5,8 @@ import {
 import { Modal, Overlay, TitleWrapper } from './EditContact.styled';
 import { ContactForm } from 'components/contactForm/ContactForm';
 import { Button } from './EditContact.styled';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const EditContact = ({ closeModal, id }) => {
   const { data: contacts } = useFetchContactsQuery();
@@ -16,6 +18,7 @@ export const EditContact = ({ closeModal, id }) => {
   const handleEditContact = async fields => {
     try {
       await editContact({ id, ...fields });
+      toast.success('Yoohoo, contact is updated');
       handleCloseModal();
     } catch (error) {
       console.log(error.message);
