@@ -4,11 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectFilter } from 'redux/filterSlice';
 
 const ContactList = () => {
-  const {
-    data: contacts,
-    error,
-    isLoading,
-  } = useFetchContactsQuery({ refetchOnMountOrArgChange: true });
+  const { data: contacts, error, isLoading } = useFetchContactsQuery();
   const filter = useSelector(selectFilter);
   const filtredContacts = !contacts
     ? []
